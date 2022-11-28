@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <div class="modal">
+    <div>
         <div class="black-bg">
             <div class="white-bg">
             <h4>로그인하세요</h4>
@@ -44,12 +44,13 @@
         document.querySelector('.navbar-toggler')
         .addEventListener('click', function(){
             document.querySelector('.list-group')
-            .classList.toggle('show');
+            .classList.toggle('slide-down');
         })
 
         $('.modal-btn').on('click', function(){
-            $('.modal').addClass('show');
+            $('.black-bg').addClass('show-modal');
         })        
+
     </script>
 
     
