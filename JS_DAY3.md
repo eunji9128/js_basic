@@ -62,17 +62,42 @@
 
 ### if else 조건문
 ```js
-$('#send').on('click', function(){
+$('form').on('submit', function(e){
     if ($('.form-id').val().trim() == '') {
-        alert('아이디를 입력하세요')
+        e.preventDefault();
+        alert('아이디를 입력하세요');
     } if ($('.form-pw').val().trim() == '') {
-        alert('패스워드를 입력하세요')
+        e.preventDefault();
+        alert('패스워드를 입력하세요');
     } else {
-        alert('기다려주세요')
+        alert('기다려주세요');
     }
 })
 ```
 - if (조건) {실행 코드} 와 같은 문법으로 조건문을 실행할 수 있다
     - 조건이 참일 경우 안의 코드가 실행
 - 위에서 input의 공백을 체크하기 위해 각 input의 value(.val())를 불러왔으며, trim()을 통해 공백을 제거해주어 공백 입력도 방지해주었다
+- Event listener 설정 시 button id인 #send 'click' 으로 설정해도 되고, form tag 'submit' 으로 설정해도 동일하다
+- 조건문 안에 alert만 실행한다면 form submit action은 그대로 진행된다 > 이를 막기 위해서는 function parameter로 event(=e)를 받아와 e.preventDefault() 실행해주면 된다
+    - event 객체에 대해서는 이후 자세히 설명
+
+### else if
+```js
+if (3 == 3) {
+    console.log('참1')
+} else if (3 > 1) {
+    console.log ('참2')
+}
+
+if (3 == 3) {
+    console.log('참3')
+} if (3 > 1) {
+    console.log('참4')
+}
+```
+- else if 문을 붙여 다중 조건식을 사용할 수 있다
+- if - else if 문과 if - if 문의 차이점
+    - if - else if 문의 경우 if 가 참이어서 내부 코드가 실행되면 따라오는 else if 문은 실행되지 않는다 > 출력 결과: 참1
+    - if - if 문의 경우 선행 if 가 참이어서 내부 코드가 실행되어도 후행 if 문도 실행된다 > 출력 결과: 참3 참4
+    - (참고) 모든 조건을 탐색하지 않아도 될 경우 if - else if가 효율을 높여줄 수 있다
 
