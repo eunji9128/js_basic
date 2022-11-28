@@ -15,7 +15,17 @@
         <div class="black-bg">
             <div class="white-bg">
             <h4>로그인하세요</h4>
-            <button class="btn btn-danger" id="close">닫기</button>
+            
+            <form action="success.html">
+                <div class="my-3">
+                    <input type="text" class="form-control form-id">
+                    </div>
+                    <div class="my-3">
+                    <input type="password" class="form-control form-pw">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="send">전송</button>
+                    <button type="button" class="btn btn-danger" id="close">닫기</button>
+            </form> 
             </div>
         </div>
     </div> 
@@ -41,15 +51,26 @@
 
     <script>
 
+        // navbar-toggler click
         document.querySelector('.navbar-toggler')
         .addEventListener('click', function(){
             document.querySelector('.list-group')
             .classList.toggle('slide-down');
         })
 
+        // modal-btn click
         $('.modal-btn').on('click', function(){
             $('.black-bg').addClass('show-modal');
-        })        
+        })
+
+        //form-input detect
+        $('#send').on('click', function(){
+            if ($('.form-id').val().trim() == '') {
+                alert('아이디를 입력하세요')
+            } if ($('.form-pw').val().trim() == '') {
+                alert('패스워드를 입력하세요')
+            }
+        })
 
     </script>
 
