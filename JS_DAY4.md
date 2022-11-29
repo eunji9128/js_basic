@@ -15,7 +15,7 @@ document.getElementById('email').addEventListener('change', function(){
     - input: 입력 창에 값이 변경될 때마다 내부 코드를 실행해준다
     - change: 입력 창에 값이 변경되고 포커스를 읽었을 때 내부 코드를 실행해준다
 
-## true/false 자료형
+## boolean & 연산 & 변수
 ### 조건문 내 boolean
 ```js
 if ( true ) {
@@ -58,4 +58,10 @@ if( 1 == 1 || 2 == 3 ) {
 ```
 - && 는 AND 연산자, || 는 OR 연산자
 
+
+### var, let, const
+![image](https://user-images.githubusercontent.com/80051721/204465430-ee3e31d4-9410-4706-8c29-867dccf6982f.png)
+- var 변수는 가장 유연해 재선언, 재할당이 가능하고 function 단위로 범위가 제한된다
+- let 변수는 재선언은 불가능해 복잡하고 긴 코드에서 실수로 재선언해 사용하는 일을 방지할 수 있고, 중괄호 단위로 범위가 제한된다
+- const 변수는 재선언, 재할당 모두 불가능해 수정하면 안되는 값을 할당할 때 사용할 수 있고, 중괄호 단위로 범위가 제한된다
 

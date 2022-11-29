@@ -33,6 +33,7 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
           <span class="navbar-brand">Navbar</span>
+          <span class="badge bg-dark ms-auto mx-3">Dark 🔄</span>
           <button class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -48,18 +49,6 @@
     </ul>
 
     <button class="modal-btn">버튼</button>
-
-
-    <script>
-        function 삼육구(num) {
-            num = num % 10 ;
-            if ( num % 3 == 0 ) {
-                console.log('박수');
-            } else {
-                console.log('통과');
-            }
-        }
-    </script>
 
     <script>
 
@@ -86,6 +75,18 @@
             } else if ($('.form-pw').val().trim().length < 6) {
                 e.preventDefault();
                 alert('패스워드를 6자 이상 입력하세요');
+            }
+        })
+
+        // dark-mode toggle
+        var count = 0;
+
+        document.getElementsByClassName('badge')[0].addEventListener('click', function(){
+            count += 1;
+            if ( count % 2 == 0 ) {
+                document.getElementsByClassName('badge')[0].innerHTML = 'Dark 🔄';
+            } else {
+                document.getElementsByClassName('badge')[0].innerHTML = 'Light 🔄';
             }
         })
 
