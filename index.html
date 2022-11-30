@@ -48,7 +48,15 @@
         <li class="list-group-item">And a fifth one</li>
     </ul>
 
-    <button class="modal-btn">버튼</button>
+    <div class="main-bg">
+        <h4>Shirts on Sale</h4>
+        <button id="login" class="btn btn-danger">로그인</button>
+    </div>
+
+    <div class="alert alert-danger">
+        <span class="count">5</span>초 이내 구매 시 사은품 증정!
+    </div>
+
 
     <script>
 
@@ -57,12 +65,12 @@
         .addEventListener('click', function(){
             document.querySelector('.list-group')
             .classList.toggle('slide-down');
-        })
+        });
 
         // modal-btn click
-        $('.modal-btn').on('click', function(){
+        $('#login').on('click', function(){
             $('.black-bg').addClass('show-modal');
-        })
+        });
 
         //form-input detect
         $('#send').on('click', function(e){
@@ -76,7 +84,7 @@
                 e.preventDefault();
                 alert('패스워드를 6자 이상 입력하세요');
             }
-        })
+        });
 
         // dark-mode toggle
         var count = 0;
@@ -88,7 +96,20 @@
             } else {
                 document.getElementsByClassName('badge')[0].innerHTML = 'Light 🔄';
             }
-        })
+        });
+
+        // alert timer
+        var timer_count = 5;
+
+        var timer = setInterval(function(){
+            timer_count -= 1;
+            document.querySelector('.count').innerHTML = timer_count;
+        }, 1000);
+
+        setTimeout(function(){
+            $('.alert').hide();
+            clearTimeout(timer);
+        }, 5000);
 
     </script>
 
