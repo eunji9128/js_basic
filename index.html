@@ -57,8 +57,61 @@
         <span class="count">5</span>초 이내 구매 시 사은품 증정!
     </div>
 
+    <div style="overflow: hidden;">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="/img/car1.png">
+            </div>
+            <div class="slide-box">
+                <img src="/img/car2.png">
+            </div>
+            <div class="slide-box">
+                <img src="/img/car3.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <div class="btn-box">
+            <button class="slide-prev">prev</button>
+            <button class="slide-1">1</button>
+            <button class="slide-2">2</button>
+            <button class="slide-3">3</button>
+            <button class="slide-next">next</button>
+        </div>
+    </div>
 
     <script>
+
+        // slide-btn
+        var slide_num = 1;
+
+        document.querySelector('.slide-1').addEventListener('click', function(){
+            document.querySelector('.slide-container').style.transform = 'translateX(0)';
+            slide_num = 1;
+        });
+        document.querySelector('.slide-2').addEventListener('click', function(){
+            document.querySelector('.slide-container').style.transform = 'translateX(-100vw)';
+            slide_num = 2;
+        });
+        document.querySelector('.slide-3').addEventListener('click', function(){
+            document.querySelector('.slide-container').style.transform = 'translateX(-200vw)';
+            slide_num = 3;
+        });
+
+        document.querySelector('.slide-next').addEventListener('click', function(){
+            slide_num = (slide_num % 3) + 1;
+            document.querySelector('.slide-container').style.transform = 'translateX(-' + (slide_num-1) + '00vw)';
+        });
+        document.querySelector('.slide-prev').addEventListener('click', function(){
+            if ( slide_num == 1 ) {
+                slide_num = 3;
+            } else {
+                slide_num -= 1;
+            }
+
+            document.querySelector('.slide-container').style.transform = 'translateX(-' + (slide_num-1) + '00vw)';
+        })
 
         // navbar-toggler click
         document.querySelector('.navbar-toggler')

@@ -50,3 +50,24 @@
 .slide-down {
     height: 220px;
 }
+
+.slide-container {
+    width: 300vw;
+    transition: all 1s;
+    transform: translateX(0);
+}
+
+.slide-box {
+    width: 100vw;
+    float: left;
+}
+
+.slide-box img {
+    width: 100%;
+}
+
+.btn-container {
+    width: 100vw;
+    padding: 5px;
+    text-align: center;
+}
