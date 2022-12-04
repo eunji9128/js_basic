@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="css/main.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
     <div>
         <div class="black-bg">
             <div class="white-bg">
-            <h4>로그인하세요</h4>
-            
-            <form action="success.html">
-                <div class="my-3">
-                    <input type="text" class="form-control form-id">
+                <h4>로그인하세요</h4>
+
+                <form action="success.html">
+                    <div class="my-3">
+                        <input type="text" class="form-control form-id">
                     </div>
                     <div class="my-3">
-                    <input type="password" class="form-control form-pw">
+                        <input type="password" class="form-control form-pw">
                     </div>
                     <button type="submit" class="btn btn-primary" id="send">전송</button>
                     <button type="button" class="btn btn-danger" id="close">닫기</button>
-            </form> 
+                </form>
             </div>
         </div>
-    </div> 
-    
+    </div>
+
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-          <span class="navbar-brand">Navbar</span>
-          <span class="badge bg-dark ms-auto mx-3">Dark 🔄</span>
-          <button class="navbar-toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <span class="navbar-brand">Navbar</span>
+            <span class="badge bg-dark ms-auto mx-3">Dark 🔄</span>
+            <button class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
 
@@ -52,6 +56,21 @@
         <h4>Shirts on Sale</h4>
         <button id="login" class="btn btn-danger">로그인</button>
     </div>
+
+    <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium exercitationem.
+    </div> 
+
+    <script>
+        document.querySelector('.lorem').addEventListener('scroll', function(){
+            var scroll_top = document.querySelector('.lorem').scrollTop;
+            var scroll_height = document.querySelector('.lorem').scrollHeight;
+            var client_height = document.querySelector('.lorem').clientHeight;
+            if ( scroll_top + client_height >= (scroll_height - 10) ) {
+                alert('약관의 마지막 줄입니다');
+            };
+        });
+    </script>
 
     <div class="alert alert-danger">
         <span class="count">5</span>초 이내 구매 시 사은품 증정!
@@ -82,51 +101,29 @@
     </div>
 
     <script>
-
-        // slide-btn
-        var slide_num = 1;
-
-        document.querySelector('.slide-1').addEventListener('click', function(){
-            document.querySelector('.slide-container').style.transform = 'translateX(0)';
-            slide_num = 1;
-        });
-        document.querySelector('.slide-2').addEventListener('click', function(){
-            document.querySelector('.slide-container').style.transform = 'translateX(-100vw)';
-            slide_num = 2;
-        });
-        document.querySelector('.slide-3').addEventListener('click', function(){
-            document.querySelector('.slide-container').style.transform = 'translateX(-200vw)';
-            slide_num = 3;
-        });
-
-        document.querySelector('.slide-next').addEventListener('click', function(){
-            slide_num = (slide_num % 3) + 1;
-            document.querySelector('.slide-container').style.transform = 'translateX(-' + (slide_num-1) + '00vw)';
-        });
-        document.querySelector('.slide-prev').addEventListener('click', function(){
-            if ( slide_num == 1 ) {
-                slide_num = 3;
+        // navbar scroll effect
+        window.addEventListener('scroll', function(){
+            if ( window.scrollY > 100 ) {
+                document.querySelector('.navbar-brand').style.fontSize = "20px";
             } else {
-                slide_num -= 1;
+                document.querySelector('.navbar-brand').style.fontSize = "30px";
             }
-
-            document.querySelector('.slide-container').style.transform = 'translateX(-' + (slide_num-1) + '00vw)';
         })
 
         // navbar-toggler click
         document.querySelector('.navbar-toggler')
-        .addEventListener('click', function(){
-            document.querySelector('.list-group')
-            .classList.toggle('slide-down');
-        });
+            .addEventListener('click', function () {
+                document.querySelector('.list-group')
+                    .classList.toggle('slide-down');
+            });
 
         // modal-btn click
-        $('#login').on('click', function(){
+        $('#login').on('click', function () {
             $('.black-bg').addClass('show-modal');
         });
 
         //form-input detect
-        $('#send').on('click', function(e){
+        $('#send').on('click', function (e) {
             var email = $('.form-id').val().trim();
             var pw = $('.form-pw').val().trim();
 
@@ -151,9 +148,9 @@
         // dark-mode toggle
         var count = 0;
 
-        document.getElementsByClassName('badge')[0].addEventListener('click', function(){
+        document.getElementsByClassName('badge')[0].addEventListener('click', function () {
             count += 1;
-            if ( count % 2 == 0 ) {
+            if (count % 2 == 0) {
                 document.getElementsByClassName('badge')[0].innerHTML = 'Dark 🔄';
             } else {
                 document.getElementsByClassName('badge')[0].innerHTML = 'Light 🔄';
@@ -163,20 +160,53 @@
         // alert timer
         var timer_count = 5;
 
-        var timer = setInterval(function(){
+        var timer = setInterval(function () {
             timer_count -= 1;
             document.querySelector('.count').innerHTML = timer_count;
         }, 1000);
 
-        setTimeout(function(){
+        setTimeout(function () {
             $('.alert').hide();
             clearTimeout(timer);
         }, 5000);
 
+        // slide-btn
+        var slide_num = 1;
+
+        document.querySelector('.slide-1').addEventListener('click', function () {
+            document.querySelector('.slide-container').style.transform = 'translateX(0)';
+            slide_num = 1;
+        });
+        document.querySelector('.slide-2').addEventListener('click', function () {
+            document.querySelector('.slide-container').style.transform = 'translateX(-100vw)';
+            slide_num = 2;
+        });
+        document.querySelector('.slide-3').addEventListener('click', function () {
+            document.querySelector('.slide-container').style.transform = 'translateX(-200vw)';
+            slide_num = 3;
+        });
+
+        document.querySelector('.slide-next').addEventListener('click', function () {
+            slide_num = (slide_num % 3) + 1;
+            document.querySelector('.slide-container').style.transform = 'translateX(-' + (slide_num - 1) + '00vw)';
+        });
+        document.querySelector('.slide-prev').addEventListener('click', function () {
+            if (slide_num == 1) {
+                slide_num = 3;
+            } else {
+                slide_num -= 1;
+            }
+
+            document.querySelector('.slide-container').style.transform = 'translateX(-' + (slide_num - 1) + '00vw)';
+        })
+
     </script>
 
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>
