@@ -49,3 +49,35 @@ $('.lorem').on('scroll', function(){
 }
 ```
 - (참고) bootstrap 설치하여 사용 시 bootstrap 기본 스타일로 모든 스크롤 동작에 딜레이가 적용되어 있다 > 이를 없애기 위해서는 root 에서 scroll-behavior: auto로 설정해주면 된다
+
+
+### scroll event 사용 시 주의점
+1. scroll event listener 안의 코드는 1초에 60번씩 실행되므로, 성능 저하를 막기 위해서는 scroll event listener는 scroll bar 당 하나만 사용하는 것이 좋다
+2. event listener가 무한으로 실행되지 않도록 하기 위해서는 event listener를 제거해주어야 한다(document.querySeletor('.className').removeEventListener('scroll', callbackfunction);)
+```js
+var lorem_scroll = function() {
+    var scroll_top = document.querySelector('.lorem').scrollTop;
+    var scroll_height = document.querySelector('.lorem').scrollHeight;
+    var client_height = docuement.querySelector('.lorem').clientHeight;
+
+    if ( scroll_top + client_height >= (scroll_height - 10) ) {
+        alert('약관의 마지막입니다');
+        document.querySelector('.lorem').removeEventListener('scroll', lorem_scroll); // addEventListener 와 이벤트 형태, 콜백함수명 동일해야 함
+    };
+};
+
+document.querySelector('.lorem').addEventListener('scroll', lorem_scroll);
+```
+- 이벤트 리스너를 제거할 때 중요한 것은 1) 콜백 함수 명을 removeEventListener의 두번째 파라미터(default)로 사용하기 때문에, 익명 함수를 사용한 이벤트 리스너는 제거할 수 없다
+- 아무튼 이벤트 리스너를 추가했을 때와 같은 파라미터를 제거 시에도 넣어주어야 한다
+
+### 현재 페이지의 스크롤 값
+```js
+document.querySelector('html').scrollTop;
+document.querySelector('html').scrollHeight;
+document.querySelector('html').clientHeight;
+window.scrollY; // html clientHeight 와 같음
+```
+- 현재 페이지 스크롤 값을 보려면 html tag의 값을 보면 된다 > 현재 페이지 = html tag
+- 다만, scrollHeight 값은 페이지 로딩이 다 끝난 후에 가장 정확하기 때문에 위의 값을 사용하기 위해서는 body tag 마지막에 코딩하는 것이 가장 좋다
+

@@ -34,6 +34,8 @@
         </div>
     </div>
 
+
+
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <span class="navbar-brand">Navbar</span>
@@ -42,7 +44,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
     </nav>
+    <div class="dummy-nav"></div> <!-- position fixed 겹침 방지 -->
 
     <ul class="list-group">
         <li class="list-group-item">An item</li>
@@ -58,18 +64,13 @@
     </div>
 
     <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium exercitationem.
-    </div> 
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit
+        debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur
+        praesentium exercitationem.
+    </div>
 
     <script>
-        document.querySelector('.lorem').addEventListener('scroll', function(){
-            var scroll_top = document.querySelector('.lorem').scrollTop;
-            var scroll_height = document.querySelector('.lorem').scrollHeight;
-            var client_height = document.querySelector('.lorem').clientHeight;
-            if ( scroll_top + client_height >= (scroll_height - 10) ) {
-                alert('약관의 마지막 줄입니다');
-            };
-        });
+
     </script>
 
     <div class="alert alert-danger">
@@ -100,15 +101,20 @@
         </div>
     </div>
 
+    <div style="height: 1000px;"></div>
+
     <script>
-        // navbar scroll effect
+        //scroll progress
+        
         window.addEventListener('scroll', function(){
-            if ( window.scrollY > 100 ) {
-                document.querySelector('.navbar-brand').style.fontSize = "20px";
-            } else {
-                document.querySelector('.navbar-brand').style.fontSize = "30px";
-            }
+            var scroll_top = document.querySelector('html').scrollTop;
+            var scroll_height = document.querySelector('html').scrollHeight;
+            var client_height = document.querySelector('html').clientHeight;
+            var scroll_progress = scroll_top / (scroll_height - client_height);
+            document.querySelector('.progress-bar').style.width = (scroll_progress * 100) + '%';
+            console.log(scroll_progress);
         })
+
 
         // navbar-toggler click
         document.querySelector('.navbar-toggler')
@@ -198,7 +204,30 @@
             }
 
             document.querySelector('.slide-container').style.transform = 'translateX(-' + (slide_num - 1) + '00vw)';
-        })
+        });
+
+        // navbar scroll effect
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 100) {
+                document.querySelector('.navbar-brand').style.fontSize = "20px";
+            } else {
+                document.querySelector('.navbar-brand').style.fontSize = "30px";
+            }
+        });
+
+        // lorem scroll effect
+        var lorem_scroll = function() {
+            var scroll_top = document.querySelector('.lorem').scrollTop;
+            var scroll_height = document.querySelector('.lorem').scrollHeight;
+            var client_height = document.querySelector('.lorem').clientHeight;
+            if (scroll_top + client_height >= (scroll_height - 10)) {
+                alert('약관의 마지막 줄입니다');
+                document.querySelector('.lorem').removeEventListener('scroll', lorem_scroll);
+            };
+        }
+
+        document.querySelector('.lorem').addEventListener('scroll', lorem_scroll);
+        
 
     </script>
 
