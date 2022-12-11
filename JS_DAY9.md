@@ -84,3 +84,35 @@ function tab_open(num) {
     - data-{name} 속성 사용 시 원하는 값을 개체에 심어놓을 수 있다
     - 개체.dataset.{name} 을 통해 값을 사용할 수 있다
     - (참고) dataset 문법은 explorer 11+ 에서만 작동
+
+
+## 유용한 JS Libraries
+### Swiper
+- https://swiperjs.com/get-started#use-swiper-from-cdn
+- 캐러셀 호환 잘되고 예쁘게 만들 수 있는 라이브러리
+
+### Chart.js
+- https://cdnjs.com/libraries/Chart.js
+- https://www.chartjs.org/docs/latest/
+- 웹페이지에서 차트 넣을 때 유용한 라이브러리(어드민, 통계, 주식/코인 서비스 등)
+
+### AOS(Animate On Scroll)
+- https://github.com/michalsnik/aos
+- https://michalsnik.github.io/aos/
+- 스크롤 내리면 요소가 서서히 등장하는 애니메이션을 만들고 싶을 때 유용한 라이브러리
+
+### EmailJS
+- https://www.emailjs.com/docs/introduction/how-does-emailjs-work/
+- JS 만으로도 이메일 전송이 가능하게 해주는 라이브러리(원래 이메일 전송은 서버에서 진행, 여기서는 gmail 등 서버를 잠깐 빌리는 형태(?))
+
+### Lodash
+- https://lodash.com/
+- array, object, 문자, 숫자 자료 처리를 편하게 해주는 기본 함수 제공 라이브러리(초보라면 이 라이브러리 사용 전에 알고리즘 짜는 연습하는 것을 추천)
+
+### React or Vue
+- UI 재활용이 자주 필요한 사이트거나 모바일처럼 페이지 이동 없이 동작하는 Single Page Application 만들 때 유용한 라이브러리
+
+### fullpage.js
+- https://alvarotrigo.com/fullPage/ (동작예시)
+- https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs
+- 웹페이지를 ppt처럼 만들어주는 라이브러리
