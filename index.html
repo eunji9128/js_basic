@@ -104,6 +104,18 @@
     <div style="height: 1000px;"></div>
 
     <script>
+        // modal bg click
+        document.querySelector('.black-bg').addEventListener('click', function(e) {
+
+            console.log(e.target);
+            console.log($('.black-bg'));
+
+            if ( e.target == document.querySelector('.black-bg') ) {
+                document.querySelector('.black-bg').classList.remove('show-modal');
+            };
+
+        });
+
         //scroll progress
         
         window.addEventListener('scroll', function(){
