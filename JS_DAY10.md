@@ -44,3 +44,88 @@ console.log(car); // {name: 아반떼, price: 50000}
 ### Client-side rendering
 - 값은 비워놓은 html과 데이터를 Client 요청 시 같이 보내주고, JS 가 browser 단(Client 단)에서 데이터를 비워져 있는 html 위치에 넣어줌
 - 이 때 비워져 있는 html 위치에 데이터를 넣어주는 것을 데이터 바인딩이라고 한다
+
+
+## Select
+### Select tag
+```html
+<form class="container my-5 form-group">
+    <p>상품선택</p>
+    <select class="form-select mt-2">
+        <option value="cap">모자</option>
+        <option value="shirt">셔츠</option>
+    </select>
+    <select class="form-select mt-2 form-hide">
+        <option>95</option>
+        <option>100</option>
+        <option>105</option>
+        <option>110</option>
+    </select>
+</form>
+```
+- select 는 input 과 같이 사용자 인풋을 받는 태그지만, 드롭다운 형태로 미리 설정해놓은 옵션만 선택할 수 있다
+- select > option tag 로 응답을 설정할 수 있다
+- option은 value 값을 설정할 수 있는데, 따로 지정하지 않을 경우 html 값으로 대체된다
+
+### Responsive Select UI
+```css
+.form-hide {
+    display: none;
+}
+```
+```js
+document.querySelectorAll('.form-select')[0].addEventListener('input', function() {
+    if ( this.value == 'shirt' ) {
+        document.querySelectorAll('.form-select')[1].classList.remove('form-hide');
+    } else {
+        document.querySelectorAll('.form-select')[1].classList.add('form-hide');
+    }
+})
+```
+- 위와 같이 select 에서 유저가 입력한 값은 event listener의 input event 발생 시 value로 받아올 수 있다 (document.querySelectorAll('.form-select')[0].value)
+- 여기서 선택한 event 개체는 .form-select 이므로 이를 중복 선택할 때 this or function(e) & eCurrentTarget 으로 대체할 수 있다
+
+
+## JS로 HTML 생성하는 방법
+### JS로 HTML 생성하는 방법 1
+```html
+<div id='test'>
+
+</div>
+```
+```js
+var a = document.createElement('p');
+a.innerHTML = '안녕';
+document.querySelector(#test).appendChild(a);
+```
+1. document.createElement('p') 로 p tag 를 생성해 a 변수에 저장한다
+2. a.innerHTML 로 내부 html text를 변경한다
+3. Selector로 원하는 부모 개체를 찾고 .appendChild(a) 로 a 변수를 자식 개체로 삽입한다
+- (참고) 이 방법이 속도는 가장 빠르나 컴퓨터 성능이 좋아지며 속도의 차이가 미미해졌다
+
+### JS로 HTML 생성하는 방법 2
+```js
+var a = '<p>안녕</p>';
+document.querySelector('#test').insertAdjacentHTML('beforeend', a);
+```
+1. a 변수에 삽입하고자 하는 html text를 저장한다
+2. selector로 원하는 부모 개체를 찾고 .insertAdjacentHTML('삽입위치', a) 로 a 변수를 원하는 위치에 삽입한다
+    - (참고) beforeend 는 태그 내부의 맨 아래
+
+### JS로 HTML 생성하는 방법 3
+```js
+var a = '<p>안녕</p>';
+$(#test).append(a);
+```
+1. a 변수에 삽입하고자 하는 html text를 저장한다
+2. jQuery 문법을 이용해 부모 개체를 선택 후 .append(a) 로 a 변수를 삽입한다
+    - (참고) append 이용 시 태그 내부의 맨 아래 삽입
+
+### JS로 HTML 내용 대체
+```js
+var a = '<p>안녕</p>';
+
+document.querySelector(#test).innerHTML = a;
+$(#test).html(a);
+```
+
