@@ -31,15 +31,23 @@ document.querySelector('.price').innerHTML = car.price;
 var form_select = document.querySelectorAll('.form-select')[0];
 var form_option = document.querySelectorAll('.form-select')[1];
 
+var pants = [28, 30, 32, 34];
+var shirts = [95, 100, 105];
+
 form_select.addEventListener('input', function() {
     if ( this.value == 'shirt' ) {
-        var options = '<option>95</option><option>100</option>';
         form_option.classList.remove('form-hide');
-        form_option.innerHTML = options;
+        form_option.innerHTML = '';
+        shirts.forEach(function(data){
+            form_option.insertAdjacentHTML('beforeend', `<option>${data}</option>`);
+        });
     } else if ( this.value == 'pants' ) {
-        var options = '<option>28</option><option>30</option>';
         form_option.classList.remove('form-hide');
-        form_option.innerHTML = options;
+        form_option.innerHTML = '';
+        pants.forEach(function(data){
+            form_option.insertAdjacentHTML('beforeend', `<option>${data}</option>`);
+        });
+
     } else {
         form_option.classList.add('form-hide');
     }

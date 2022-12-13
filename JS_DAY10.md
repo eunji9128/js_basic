@@ -129,3 +129,58 @@ document.querySelector(#test).innerHTML = a;
 $(#test).html(a);
 ```
 
+
+## array, object 반복문
+### forEach
+```js
+var options = [op1, op2, op3];
+
+options.forEach(function(data, i) {
+    console.log(data);
+});
+```
+- array 의 값을 하나씩 출력하기 위해 forEach 를 사용할 수 있다
+- forEach 사용 시 콜백 함수를 명시해주어야 하며, 콜백 함수의 파라미터 값이 array의 개별 값들이 된다(=op1, op2, op3)
+- 콜백 함수의 두번째 파라미터는 array 값의 인덱스를 반환해준다
+    - (참고) for 함수보다 forEach 함수가 조금 더 느리다
+
+### for in
+```js
+var obj = {name: 'kim', age: 20};
+
+for ( var key in obj ) {
+    console.log(key); // name age
+    console.log(obj[key]); // kim 20
+};
+```
+- object 의 key 와 value 를 하나씩 출력하기 위해서는 for in 문법을 사용할 수 있다
+- for 의 파라미터로 임의변수 in object명 을 사용하면 object 각 요소를 반환해주며, 임의변수 = key 가 된다.
+
+
+## arrow function
+### arrow function 문법
+```js
+arr.forEach(function(data) {
+    console.log(data);
+});
+
+arr.forEach( (data) => {
+    console.log(data);
+});
+
+arr.forEach( data => {
+    console.log(data); // 파라미터 () 생략
+});
+
+arr.forEach( (data) =>
+    data; // {} return 생략
+);
+
+let func = function() { console.log('hi'); };
+let func = () => { console.log('hi'); };
+```
+- 콜백 함수는 () => {} 로 대체하여 사용 가능하며, 이를 arrow function이라고 부른다
+    - (참고) arrow function 에서 콜백 파라미터가 1개면 ()를 생략해도 된다
+    - (참고) arrow function 에서 return 한 줄만 출력할 경우 {} return 은 생략해도 된다
+- 함수를 변수에 저장해 사용할 때도 arrow function 사용 가능하다
+- 콜백 함수 내에서 this를 사용할 경우 주의해야 할 것은, function() {}은 해당 위치에 맞는 this 타겟을 재정의 해주지만, arrow function은 바깥에 지정되어 있던 this 를 그대로 사용한다
