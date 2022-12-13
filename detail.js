@@ -20,3 +20,9 @@ function tab_open(num) {
     tab_ct.removeClass('show');
     tab_ct.eq(num).addClass('show');
 }
+
+// product display
+var car = { name: '소나타', price: 50000};
+
+document.querySelector('.name').innerHTML = car.name;
+document.querySelector('.price').innerHTML = car.price;
