@@ -117,4 +117,56 @@ var new_arr = arr.map(function(a) {
 - map() 함수로 꺼낸 요소를 return 연산식을 활용하면 모든 요소에 같은 연산을 적용해줄 수 있다
 
 
+## DOM & load
+### DOM(Document Object Model)
+- JS가 HTML을 조작하기 위해서는 HTML을 JS가 해석할 수 있는 문법으로 변환해주어야 한다
+- 이를 위해 브라우저가 HTML 페이지를 열어줄 때 HTML을 object와 비슷한 자료형에 저장해준다(document = {} 라는 변수에 저장)
+```html
+<div style="color: red">안녕하세요</div>
+```
+```js
+var document = {
+    div1 : {
+        style : {color : red},
+        innerHTML : '안녕하세요'
+    }
+}
+```
+- 구체적으로는 위의 div 정보를 document object 자료형 변수에 위와 같이 저장해주고, 이를 document object 이라고 부른다(이런 형태를 가진 모델이 DOM)
+- 따라서 DOM 형태의 데이터는 JS 에서 document.querySelector('div').innerHTML = '하이' 등의 문법으로 조작해줄 수 있게 되는 것이다
 
+### ContentLoaded
+```html
+<script>
+    document.getElementById('test').innerHTML = '안녕';
+</script>
+
+<p id='test'>테스트</p>
+```
+- HTML은 위에서부터 차례로 로딩하기 때문에 위와 같이 코드를 작성하면 id='test'인 p tag가 생성되기 전에 'test' id를 가진 개체를 찾기 때문에 에러가 난다
+
+```js
+$(document).ready(function() { 실행할 코드 });
+document.addEventListener('DOMContentLoaded', function() { 실행할 코드 });
+```
+- 이를 방지 하기 위해서는 위와 같이 HTML을 다 읽었을 때 코드를 실행해주는 이벤트 리스너를 사용하는 방법이 있다
+- JS를 body tag 맨 아래 작성해준다면 발생하지 않을 문제이므로, JS 코드 위치를 내가 정할 수 없을 때 참고하면 좋다
+
+### Load 이벤트 리스너
+```js
+document.querySelector('#img-file').addEventListener('load', function() { 이미지 로드되면 실행할 코드 });
+```
+- 'load' 이벤트 리스너를 사용하면 이미지가 로드 완료 되었을 때 코드를 실행해줄 수 있다
+- 다만, 외부 JS 파일을 사용하면 JS 파일보다 이미지가 먼저 로드되어 이벤트 발생을 체크하지 못할 수 있다
+
+```js
+$(window).on('load', function() {
+    document 안의 이미지, html/js 파일 포함 전부 로드 되었을 경우 실행
+});
+
+window.addEventListener('load', function() {
+    document 안의 이미지, html/js 파일 포함 전부 로드 되었을 경우 실행
+});
+```
+- window에 붙이면 모든 이미지, 파일들이 전부 로드 완료 되었을 때 코드가 실행되도록 할 수 있다
+- .ready() 는 DOM 생성만 체크하며, window load 이벤트 리스너는 모든 파일 로드를 체크한다
