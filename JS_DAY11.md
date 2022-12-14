@@ -57,3 +57,64 @@ $.post('https://codingapple1.github.io/hello.txt', {name: 'kim'})
     - (참고) get 콜백 함수 파라미터에는 요청에 성공한 정보가 담겨 있다
     - (참고) Ajax는 json > object 자동 변환 해준다
 
+
+## array 정렬
+### .sort()
+```js
+var arr = [7, 3, 5, 2, 40];
+var products = [
+    {id: 0, price: 5000},
+    {id: 1, price: 3000},
+    {id: 2, price: 4000}
+];
+
+arr.sort(); // 문자 오름차순 [2, 3, 40, 5, 7]
+
+arr.sort(function(a, b) {
+    return a - b // 오름차순 [2, 3, 5, 7, 40]
+});
+
+arr.sort(function(a, b) {
+    return b - a // 내림차순 [40, 7, 5, 3, 2]
+});
+
+products.sort(function(a, b) {
+    return a.price - b.price // array > obj value 기준으로 오름차순
+});
+```
+- array.sort() 함수는 문자 기준 오름차순 정렬 해주는 함수이다
+    - (참고) .sort()는 데이터 원형을 변형시킨다
+- array.sort(function(a, b) {return a - b}) 의 동작 원리
+    1. a, b는 array의 각 요소 값들이다
+    2. return a - b 결과 값이 양수면 a를 오른쪽 정렬해준다
+    3. return a - b 결과 값이 음수면 a를 왼쪽 정렬해준다
+    4. 이 과정을 모든 array 요소에 대해 진행한다((7, 3), (7, 5), (7, 2), ... (2, 40))
+- array > obj 형태의 데이터는 파라미터로 꺼내온 데이터(obj 자료형)의 value를 비교하여 정렬할 수 있다
+
+
+### filter()
+```js
+var arr = [7, 3, 5, 2, 40];
+
+var new_arr = arr.filter(function(a) {
+    return a < 4 // 필터 조건식, [3, 2]
+});
+```
+- array.filter() 함수는 return 조건식 에 맞는 값들만 필터링해서 반환해주는 함수이다
+    - (참고) .filter()는 데이터 원형을 변형하지 않고 새로운 값을 반환하므로, 새 변수에 저장해 사용해야 한다
+
+
+### map()
+```js
+var arr = [7, 3, 5, 2, 40];
+
+var new_arr = arr.map(function(a) {
+    return a * 10 // 연산식, [70, 30, 50, 20, 400]
+});
+```
+- array.map() 함수는 모든 요소 값을 한 번씩 꺼내 주는 함수이다
+    - (참고) .map()은 데이터 원형을 변형하지 않고 새로운 값을 반환하므로, 새 변수에 저장해 사용해야 한다
+- map() 함수로 꺼낸 요소를 return 연산식을 활용하면 모든 요소에 같은 연산을 적용해줄 수 있다
+
+
+

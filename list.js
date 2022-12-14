@@ -6,6 +6,8 @@ var products = [
 
 // product display - default
 
+var product_row = document.querySelectorAll('.row')[0];
+
 function product_dp(item) {
     
     item.forEach((data) => {
@@ -15,7 +17,7 @@ function product_dp(item) {
             <p>가격 : ${data.price}</p>
             </div>`;
         
-            document.querySelector('.row').insertAdjacentHTML('beforeend', card_html);
+            product_row.insertAdjacentHTML('beforeend', card_html);
     });
 
 }
@@ -41,3 +43,38 @@ document.querySelector('#more').addEventListener('click', function() {
         console.log(error);
     });
 });
+
+// product order - ascending price
+
+document.querySelector('#price').addEventListener('click', function() {
+    products.sort(function(a, b) {
+        return a.price - b.price
+    });
+    
+    product_row.innerHTML = '';
+    product_dp(products);
+});
+
+document.querySelector('#descend').addEventListener('click', function(){
+    products.sort(function(a, b) {
+        if ( b.title > a.title ) {
+            return 1
+        } else if ( b.title == a.title ) {
+            return 0
+        } else {
+            return -1
+        };
+    });
+    
+    product_row.innerHTML = '';
+    product_dp(products);
+});
+
+document.querySelector('#filter').addEventListener('click', function() {
+    var products_filtered = products.filter(function(a) {
+        return a.price <= 60000
+    });
+
+    product_row.innerHTML = '';
+    product_dp(products_filtered);
+})
