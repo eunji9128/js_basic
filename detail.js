@@ -54,32 +54,19 @@ form_select.addEventListener('input', function() {
 });
 
 // test
-var 출석부 = ['흥민', '영희', '철수', '재석'];
-
-function 이름찾기(name) {
-    출석부.forEach(function(data) {
-        if ( name == data ) {
-            return console.log(name);
-        };
-    });
-};
-
-
-function 모의평균(arr, score) {
-    var total_score = 0;
-    var avg_score = 0;
-    
-    arr.forEach(function(data){
-        total_score += data;
+$.get('https://codingapple1.github.io/price.json')
+    .done(function(data) {
+        console.log(data.price);
     })
+    .fail(function() {
+        console.log('failed');
+    });
 
-    avg_score = total_score / arr.length;
-    
-    if ( avg_score < score ) {
-        console.log(`평균보다 ${score - avg_score}점이 올랐네요`);
-    } else if ( avg_score > score ) {
-        console.log(`평균보다 ${avg_score - score}점이 내려갔네요`);
-    } else {
-        console.log('평균과 동일합니다')
-    };
-}
+fetch('https://codingapple1.github.io/price.json')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.log(error);
+    })

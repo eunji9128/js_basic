@@ -138,6 +138,10 @@ ul.list::after {
     display: block;
 }
 
+.hide {
+    display: none;
+}
+
 .form-hide {
     display: none;
 }
