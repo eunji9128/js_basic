@@ -15,6 +15,7 @@ function product_dp(item) {
             <img src="https://via.placeholder.com/600" class="w-100">
             <h5>${data.title}</h5>
             <p>가격 : ${data.price}</p>
+            <button class="buy">구매</button>
             </div>`;
         
             product_row.insertAdjacentHTML('beforeend', card_html);
@@ -77,4 +78,21 @@ document.querySelector('#filter').addEventListener('click', function() {
 
     product_row.innerHTML = '';
     product_dp(products_filtered);
+})
+
+// cart data set
+
+document.querySelector('.row').addEventListener('click', function(e) {
+    var item = e.target.previousElementSibling.previousElementSibling.innerHTML;
+    var cart = localStorage.getItem('cart');
+    if ( cart == null ) {
+        var item_arr = [item];
+        item_arr = JSON.stringify(item_arr);
+        localStorage.setItem('cart', item_arr);
+    } else {
+        item_arr = JSON.parse(cart);
+        item_arr.push(item);
+        item_arr = JSON.stringify(item_arr);
+        localStorage.setItem('cart', item_arr);
+    }
 })
