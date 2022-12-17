@@ -53,3 +53,5 @@ window.addEventListener('scroll', function() {
 ```
 - 위와 같이 스크롤 이벤트를 줄 때 transition과 같은 효과를 주기 위해서는 변하는 속석 값(여기서는 opacity, scale)에 수식을 활용한 변수를 적용하는 방법이 있다
 - 1차 함수를 이용하여 스크롤 변화 값에 따라 속성 값이 비례하여 변하는 a, b 값을 찾아 수식으로 선언해주어 사용한다
+
+
