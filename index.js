@@ -124,34 +124,33 @@ function slide_prev() {
 
 // slide drag
 var drag_start = 0;
-var drag_end = 0;
 var drag_dist = 0;
 var drag = false;
+var slide_width = slide_container.clientWidth / 3;
+
 
 slide_container.addEventListener('mousedown', function(e) {
-    drag_start = e.clientX + 575 * (slide_num - 1);
-    // console.log(drag_start);
     drag = true;
-})
+    drag_start = e.clientX;
+    slide_container.style.transition = 'none';
+});
 slide_container.addEventListener('mousemove', function(e) {
     if ( drag ) {
-        drag_dist = (e.clientX + 575 * (slide_num - 1)) - drag_start;
-        slide_container.style.transform = `translateX(${drag_dist - 575 * (slide_num - 1)}px)`;
-    };
-    
-})
+        drag_dist = e.clientX - drag_start;
+        slide_container.style.transform = `translateX(${drag_dist - (slide_width * (slide_num - 1))}px)`;
+    }; 
+});
 slide_container.addEventListener('mouseup', function(e) {
     drag = false;
+    slide_container.style.transition = 'all 0.5s';
     if ( drag_dist < -250 && drag_dist < 0 ) {
         slide_next();
     } else if ( drag_dist >= -250 && drag_dist < 0 ) {
         slide_container.style.transform = `translateX(-${(slide_num - 1)}00vw)`;
     } else if ( drag_dist > 250 && drag_dist > 0 ) {
         slide_prev();
-    } else {
-        slide_container.style.transform = `translateX(-${(slide_num - 1)}00vw)`;
     }
-})
+});
 
 // navbar scroll effect
 window.addEventListener('scroll', function () {
