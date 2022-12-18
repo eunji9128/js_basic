@@ -165,3 +165,24 @@ slide_container.addEventListener('mouseup', function(e) {
     - 수식을 검토하고 검산했는데도 슬라이드를 드래그할 때 view port 사이즈에 따라 반대로 움직이거나 등 기이한 현상(...)이 반복됐다
     - 원인은 mouse move 시 transition을 길게 줄 경우 translateX 가 제대로 적용되지 않는 것 같았다 (여기서는 0.5s 미만에서 어느 정도 제대로 작동)
     - 따라서 mouse move 시에는 transition 속성을 none으로 바꿔주고, mouse up 시에 다시 transition 속성을 부여해 부드럽게 넘어가도록 했다
+
+
+## Switch
+### Switch 문법
+```js
+let 변수 = 2 + 5;
+
+switch (변수){
+  case 3 :
+    alert('변수가 3이네요');
+    break
+  case 4 :
+    alert('변수가 4네요');
+    break
+  default : 
+    alert('다 아니네')
+}
+```
+- switch 문법은 if 문과 동일하게 사용할 수 있지만, 조건 분기를 조금 더 간편하게 만들 수 있다
+- 조건은 case, 이외의 경우는 default로 사용하면 된다
+- 선택지가 이미 정해져 있는 경우에는 if 보다 직관적으로 사용할 수 있을 것 같다
