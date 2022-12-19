@@ -57,12 +57,12 @@ table {
 
 body {
     background: #eee;
-    padding: 10px;
 }
 
 .dp-container {
-    padding: 30px;
+    padding: 20px;
     width: 100%;
+    margin: 10px;
 }
 
 .dp-box {
@@ -97,6 +97,7 @@ body {
     width: 100%;
     background: lightgray;
     padding: 20px;
+    margin: 10px;
 }
 
 .cart-box {
@@ -118,5 +119,6 @@ body {
 .buy-container {
     width: 100%;
     padding: 20px;
+    margin: 10px;
 }
 
