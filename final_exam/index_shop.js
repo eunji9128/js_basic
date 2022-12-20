@@ -1,9 +1,7 @@
 // top display - products dp
-var products = 0;
 
 $.get('store.json')
     .done(function(data) {
-        products = data;
         product_dp(data, data.products.length);
     })
     .fail(function(error) {
