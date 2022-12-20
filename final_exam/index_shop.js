@@ -1,17 +1,18 @@
 // top display - products dp
+var products;
 
-$.get('store.json')
+$.get({async: false, url: 'store.json'})
     .done(function(data) {
-        product_dp(data, data.products.length);
+        // product_dp(data, data.products.length);
+        products = data;
     })
     .fail(function(error) {
         console.log(error);
     });
 
-// console.log(products);
-
-function product_dp(obj, num) {
+function product_dp(obj, num, search_idx) {
     document.querySelector('.dp-box').innerHTML = '';
+
     for (var i = 0; i < num; i++) {
         product_layout = `
             <div class="dp-card">
@@ -26,3 +27,19 @@ function product_dp(obj, num) {
     }
 };
 
+product_dp(products, products.products.length);
+
+
+// product search
+
+document.querySelector('.dp-search').addEventListener('input', function(e) {
+    var search = e.target.value;
+    if (products.products[0].title.indexOf(search) != -1) {
+        console.log(search);
+        console.log(products.products[0].title.indexOf(search));
+    }
+})
+
+document.querySelector('.dp-box').innerHTML = '';
+document.querySelector('.dp-box').insertAdjacentHTML('beforeend', `
+<h3 class="fs-5 mt-2 fw-bold"><span style="background-color: yellow;">${products.products[0].title.slice(0,2)}</span>${products.products[0].title.slice(2,5)}</h3>`);
