@@ -140,6 +140,12 @@ body {
     z-index: 6;
 }
 
+.white-box {
+    background: white;
+    color: black;
+    border: black solid 1px;
+}
+
 .hide {
     display: none;
 }
