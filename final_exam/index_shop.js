@@ -137,6 +137,7 @@ document.querySelector('.dp-box').addEventListener('click', function(e) {
     price_calc();
 });
 
+
 // total-price
 
 function price_calc() {
@@ -151,3 +152,16 @@ function price_calc() {
     console.log(total_price);
     document.querySelector('#total-price').innerHTML = total_price;
 }
+
+
+// buy-btn modal
+document.querySelector('.buy-btn').addEventListener('click', function() {
+    document.querySelector('.modal-background').classList.remove('hide');
+});
+
+// canvas modal
+var canvas = document.querySelector('#bill');
+var c = canvas.getContext('2d');
+c.font = '20px dotum';
+c.fillText('안녕하세요', 30, 20);
+c.fillText('반갑습니다', 30, 50);

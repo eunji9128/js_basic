@@ -146,6 +146,11 @@ body {
     border: black solid 1px;
 }
 
+.bill-box {
+    width: 350px;
+    background: white;
+}
+
 .hide {
     display: none;
 }
