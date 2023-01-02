@@ -101,7 +101,7 @@ body {
 
 .cart-box {
     width: 100%;
-    height: 400px;
+    height: 500px;
     background: black;
     margin-top: 12px;
     color: white;
@@ -109,7 +109,7 @@ body {
 }
 
 .cart-box span {
-    height: 400px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;

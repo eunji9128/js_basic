@@ -20,7 +20,7 @@ function product_dp(obj, num) {
             <h3 class="fs-5 mt-2 fw-bold">${obj.products[i].title}</h3>
             <p class="mt-2">${obj.products[i].brand}</p>
             <h4 class="fs-6 mt-3 fw-semibold">가격: ${obj.products[i].price}</h4>
-            <button class="black-btn">담기</button>
+            <button class="black-btn cart-btn">담기</button>
             </div>`; 
             
         document.querySelector('.dp-box').insertAdjacentHTML('beforeend', product_layout);
@@ -61,7 +61,7 @@ function product_sch(arr, num, start, end) {
             <h3 class="fs-5 mt-2 fw-bold">${arr[i].title.slice(0, start[i])}<span style="background-color: yellow;">${arr[i].title.slice(start[i],end[i]+1)}</span>${arr[i].title.slice(end[i]+1,arr[i].title.length)}</h3>
             <p class="mt-2">${arr[i].brand}</p>
             <h4 class="fs-6 mt-3 fw-semibold">가격: ${arr[i].price}</h4>
-            <button class="black-btn">담기</button>
+            <button class="black-btn cart-btn">담기</button>
             </div>`; 
             
         document.querySelector('.dp-box').insertAdjacentHTML('beforeend', product_layout);
@@ -82,15 +82,47 @@ document.querySelector('.dropzone').ondragover = function(e) {
 
 document.querySelector('.dropzone').ondrop = function(e) {
     this.innerHTML = '';
+    var dropzone = document.querySelector('.dropzone');
 
     var id = e.dataTransfer.getData('id');
-    if ( cart_item.length == 0 ) {
+    cart_check(cart_item, id);
+
+    cart_add(dropzone, id);
+    // for ( var i = 0; i < cart_item.length; i++ ) {
+    //     var id = cart_item[i].id;
+    //     console.log(id);
+    //     product_layout = `
+    //             <div class="dp-card" draggable="true" style="color: black;">
+    //                 <img src="img/${products.products[id].photo}">
+    //                 <h3 class="fs-5 mt-2 fw-bold">${products.products[id].title}</h3>
+    //                 <p class="mt-2">${products.products[id].brand}</p>
+    //                 <h4 class="fs-6 mt-3 fw-semibold">${products.products[id].price}</h4>
+    //                 <p class="white-box mt-3 p-1">${cart_item[i].amount}</p>
+    //             </div>`; 
+    //     console.log(products.products[id].title);
+    //     this.insertAdjacentHTML('beforeend', product_layout);
+    // }
+
+};
+
+function cart_check(arr, id) {
+    if ( arr.length == 0 ) {
         cart_item.push({'id': products.products[id].id, 'title': products.products[id].title, 'amount': 1});
         console.log(cart_item);
     } else {
-        cart_check(cart_item, id);
+        for ( var i = 0; i < arr.length; i++ ) {
+            if ( cart_item[i].id == products.products[id].id ) {
+                cart_item[i].amount += 1;
+                console.log(cart_item);
+                return i
+            }
+        }
+        cart_item.push({'id': products.products[id].id, 'title': products.products[id].title, 'amount': 1});
+        console.log(cart_item);
     }
+}
 
+function cart_add(location, id) {
     for ( var i = 0; i < cart_item.length; i++ ) {
         var id = cart_item[i].id;
         console.log(id);
@@ -103,17 +135,16 @@ document.querySelector('.dropzone').ondrop = function(e) {
                     <p class="white-box mt-3 p-1">${cart_item[i].amount}</p>
                 </div>`; 
         console.log(products.products[id].title);
-        this.insertAdjacentHTML('beforeend', product_layout);
+        location.insertAdjacentHTML('beforeend', product_layout);
     }
-
-};
-
-function cart_check(arr, id) {
-    for ( var i = 0; i < arr.length; i++ ) {
-        if ( cart_item[i].id == products.products[id].id ) {
-            cart_item[i].amount += 1;
-            return i
-        }
-    }
-    cart_item.push({'id': products.products[id].id, 'title': products.products[id].title, 'amount': 1});
 }
+
+
+// button to cart
+document.querySelector('.dp-box').addEventListener('click', function(e) {
+    var id = e.target.parentNode.dataset.id;
+    var dropzone = document.querySelector('.dropzone');
+    dropzone.innerHTML = '';
+    cart_check(cart_item, id);
+    cart_add(dropzone, id);
+})
