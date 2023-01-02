@@ -72,6 +72,7 @@ function product_sch(arr, num, start, end) {
 
 var cart_item = [];
 
+
 document.querySelector('.dp-box').ondragstart = function(e) {
     e.dataTransfer.setData('id', e.target.dataset.id);
 };
@@ -83,26 +84,11 @@ document.querySelector('.dropzone').ondragover = function(e) {
 document.querySelector('.dropzone').ondrop = function(e) {
     this.innerHTML = '';
     var dropzone = document.querySelector('.dropzone');
-
     var id = e.dataTransfer.getData('id');
+
     cart_check(cart_item, id);
-
     cart_add(dropzone, id);
-    // for ( var i = 0; i < cart_item.length; i++ ) {
-    //     var id = cart_item[i].id;
-    //     console.log(id);
-    //     product_layout = `
-    //             <div class="dp-card" draggable="true" style="color: black;">
-    //                 <img src="img/${products.products[id].photo}">
-    //                 <h3 class="fs-5 mt-2 fw-bold">${products.products[id].title}</h3>
-    //                 <p class="mt-2">${products.products[id].brand}</p>
-    //                 <h4 class="fs-6 mt-3 fw-semibold">${products.products[id].price}</h4>
-    //                 <p class="white-box mt-3 p-1">${cart_item[i].amount}</p>
-    //             </div>`; 
-    //     console.log(products.products[id].title);
-    //     this.insertAdjacentHTML('beforeend', product_layout);
-    // }
-
+    price_calc();
 };
 
 function cart_check(arr, id) {
@@ -120,7 +106,7 @@ function cart_check(arr, id) {
         cart_item.push({'id': products.products[id].id, 'title': products.products[id].title, 'amount': 1});
         console.log(cart_item);
     }
-}
+};
 
 function cart_add(location, id) {
     for ( var i = 0; i < cart_item.length; i++ ) {
@@ -137,7 +123,7 @@ function cart_add(location, id) {
         console.log(products.products[id].title);
         location.insertAdjacentHTML('beforeend', product_layout);
     }
-}
+};
 
 
 // button to cart
@@ -145,6 +131,23 @@ document.querySelector('.dp-box').addEventListener('click', function(e) {
     var id = e.target.parentNode.dataset.id;
     var dropzone = document.querySelector('.dropzone');
     dropzone.innerHTML = '';
+
     cart_check(cart_item, id);
     cart_add(dropzone, id);
-})
+    price_calc();
+});
+
+// total-price
+
+function price_calc() {
+    var total_price = 0;
+    
+    for (var i = 0; i < cart_item.length; i++) {
+        var id = cart_item[i].id;
+        console.log('add ', products.products[id].price * cart_item[i].amount, 'id ', id,'amount ', cart_item[i].amount, 'tp ', total_price);
+        total_price = total_price + products.products[id].price * cart_item[i].amount;
+        console.log(total_price);
+    }
+    console.log(total_price);
+    document.querySelector('#total-price').innerHTML = total_price;
+}
